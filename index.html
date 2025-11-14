@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Toko Fashion & Kosmetik — StoreZone</title>
+
+  <!-- PWA manifest -->
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#e91e63">
+
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <h1>Toko Fashion & Kosmetik</h1>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="status" class="status">Memuat produk…</div>
+    <div id="product-grid" class="product-grid" aria-live="polite"></div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">© <span id="year"></span> StoreZone</div>
+  </footer>
+
+  <script>
+    // --- CONFIG: sesuaikan sebelum deploy ---
+    const BLOG_FEED_JSON = "https://jualan-laku.blogspot.com/feeds/posts/default?alt=json&max-results=50";
+    const WA_NUMBER = "6281234567890"; // contoh: 62812xxxx (kode negara tanpa +)
+    const DEFAULT_PLACEHOLDER = "/icons/icon-192.png";
+    // ---------------------------------------
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+
+  <script src="/app.js"></script>
+
+  <!-- Register Service Worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js')
+        .then(() => console.log('Service Worker terdaftar'))
+        .catch(err => console.error('Gagal mendaftarkan SW:', err));
+    }
+  </script>
+</body>
+</html>
